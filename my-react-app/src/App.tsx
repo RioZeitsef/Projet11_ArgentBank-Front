@@ -7,12 +7,10 @@ import Survey from "./Pages/Survey";
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signIn" element={<Survey />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signIn" element={<Survey />} />
+      </Routes>
     </Router>
   );
 }

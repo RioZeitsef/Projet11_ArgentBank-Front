@@ -1,9 +1,13 @@
 import React from "react";
+import Hero from "../components/Hero";
+import Layout from "../components/Layout";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Layout>
+        <Hero />
+      </Layout>
     </div>
   );
 };
