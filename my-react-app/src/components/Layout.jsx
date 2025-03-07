@@ -1,19 +1,22 @@
-import PropTypes from "prop-types";
+import React from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
+import Styles from "../css/Layout.module.css";
 
-const Layout = ({ children }) => {
+const Layout = () => {
+    const location = useLocation();
+
+    const mainClassName = location.pathname === "/signin" ? "signin-background" : "home-background";
   return (
-    <div>
+    <body>
       <Header />
-      <main>{children}</main>
+        <main className={Styles[mainClassName]}>
+          <Outlet />
+        </main>
       <Footer />
-    </div>
+    </body>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

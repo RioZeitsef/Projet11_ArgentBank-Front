@@ -1,16 +1,21 @@
-.mainnav {
+.main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 }
 
-.mainnavlogo {
+.main-nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.main-nav-logo {
   display: flex;
   align-items: center;
 }
 
-.mainnavlogoimage {
+.main-nav-logo-image {
   max-width: 100%;
   width: 200px;
 }
@@ -29,11 +34,11 @@
   white-space: nowrap !important; /* 3 */
 }
 
-.mainnavitem {
+.main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
 }
 
-.mainnavitem:hover {
+.main-nav-item:hover {
   text-decoration: underline;
 }

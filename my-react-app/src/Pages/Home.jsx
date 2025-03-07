@@ -1,9 +1,8 @@
 import React from "react";
 import Hero from "../components/Hero";
-import Layout from "../components/Layout";
 import Feature from "../components/Feature";
 import styles from "../css/Pages.module.css";
-import iconChat from '../assets/icon-chat.png'; // Assurez-vous que le chemin est correct
+import iconChat from '../assets/icon-chat.png'; 
 import iconMoney from '../assets/icon-money.png';
 import iconSecurity from '../assets/icon-security.png';
 
@@ -31,23 +30,21 @@ const Home = () => {
     ];
 
   return (
-    <div>
-      <Layout>
-        <Hero />
+    <>
+      <Hero />
         <section className={styles["features"]}>
-      <h2 className={styles["sr-only"]}>Features</h2>
-      {featuresData.map((feature, index) => (
-        <Feature
-          key={index}
-          iconSrc={feature.iconSrc}
-          altText={feature.altText}
-          title={feature.title}
-          description={feature.description}
-        />
-      ))}
-    </section>
-      </Layout>
-    </div>
+          <h2 className={styles["sr-only"]}>Features</h2>
+          {featuresData.map((feature, index) => (
+            <Feature
+            key={index}
+            iconSrc={feature.iconSrc}
+            altText={feature.altText}
+            title={feature.title}
+            description={feature.description}
+            />
+          ))}
+        </section>
+    </>
   );
 }
 
