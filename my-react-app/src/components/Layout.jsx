@@ -7,7 +7,12 @@ import Styles from "../css/Layout.module.css";
 const Layout = () => {
     const location = useLocation();
 
-    const mainClassName = location.pathname === "/signin" ? "signin-background" : "home-background";
+    let mainClassName; 
+    if (location.pathname === "/signin" || location.pathname === "/user") {
+        mainClassName = "signin-background";
+    } else {
+        mainClassName = "home-background";    
+    }
   return (
     <body>
       <Header />

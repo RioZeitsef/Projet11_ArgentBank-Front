@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Styles from "../css/Pages.module.css";
 
 const Signin = () => {
@@ -23,7 +24,7 @@ const Signin = () => {
                 >
               </div>
               {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-              <a href="./user.html" className={Styles["sign-in-button"]}>Sign In</a>
+              <Link to="/user" className={Styles["sign-in-button"]}>Sign In</Link>
               {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
               {/* <button className={Styles["sign-in-button"]}>Sign In</button> */}
             </form>
@@ -32,5 +33,7 @@ const Signin = () => {
       </>
   );
 }
+
+
 
 export default Signin;
