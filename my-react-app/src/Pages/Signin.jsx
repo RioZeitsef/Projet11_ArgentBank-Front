@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Styles from "../css/Pages.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 const Signin = () => {
   return (
       <>
         <div className={Styles["bg-dark"]}>
           <section className={Styles["sign-in-content"]}>
-            <i class="fa fa-user-circle sign-in-icon"></i>
+            <FontAwesomeIcon icon={faCircleUser} />
             <h1>Sign In</h1>
             <form>
               <div className={Styles["input-wrapper"]}>

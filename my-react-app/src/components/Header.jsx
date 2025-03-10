@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "../css/Header.module.css";
 import argentBankLogo from "../assets/argentBankLogo.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
   return (
@@ -14,7 +16,7 @@ function Header() {
       </Link>
       <div>
         <Link to="/signin" className={styles["main-nav-item"]}>
-          <i class="fa fa-user-circle"></i>
+          <FontAwesomeIcon icon={faCircleUser} />
           Sign In
         </Link>
       </div>
