@@ -25,10 +25,7 @@ const Signin = () => {
                   >Remember me</label
                 >
               </div>
-              {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
               <Link to="/user" className={Styles["sign-in-button"]}>Sign In</Link>
-              {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-              {/* <button className={Styles["sign-in-button"]}>Sign In</button> */}
             </form>
           </section>
         </div>
