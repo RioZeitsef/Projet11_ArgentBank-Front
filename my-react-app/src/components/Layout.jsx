@@ -14,13 +14,13 @@ const Layout = () => {
         mainClassName = "home-background";    
     }
   return (
-    <body>
+    <div>
       <Header />
         <main className={Styles[mainClassName]}>
           <Outlet />
         </main>
       <Footer />
-    </body>
+    </div>
   );
 };
 

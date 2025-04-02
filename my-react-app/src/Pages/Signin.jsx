@@ -1,38 +1,89 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Styles from "../css/Pages.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { login } from '../actions/authActions';
 
 const Signin = () => {
+  const [credentials, setCredentials] = useState({
+    username: 'john@doe.fr',
+    password: 'password',
+  });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error, isAuthenticated } = useSelector(state => state.auth);
+
+  // Effet pour gérer la navigation après une connexion réussie
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/user');
+    }
+  }, [isAuthenticated, navigate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(credentials));
+  };
+
   return (
-      <>
-        <div className={Styles["bg-dark"]}>
-          <section className={Styles["sign-in-content"]}>
-            <FontAwesomeIcon icon={faCircleUser} />
-            <h1>Sign In</h1>
-            <form>
-              <div className={Styles["input-wrapper"]}>
-                <label for="username">Username</label
-                ><input type="text" id="username" />
-              </div>
-              <div className={Styles["input-wrapper"]}>
-                <label for="password">Password</label
-                ><input type="password" id="password" />
-              </div>
-              <div className={Styles["input-remember"]}>
-                <input type="checkbox" id="remember-me" /><label for="remember-me"
-                  >Remember me</label
-                >
-              </div>
-              <Link to="/user" className={Styles["sign-in-button"]}>Sign In</Link>
-            </form>
-          </section>
-        </div>
-      </>
+    <div className={Styles["bg-dark"]}>
+      <section className={Styles["sign-in-content"]}>
+        <FontAwesomeIcon icon={faCircleUser} />
+        <h1>Sign In</h1>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          <div className={Styles["input-wrapper"]}>
+            <label htmlFor="username">Username</label>
+            <input 
+              type="text" 
+              name="username"
+              value={credentials.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className={Styles["input-wrapper"]}>
+            <label htmlFor="password">Password</label>
+            <input 
+              type="password" 
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className={Styles["input-remember"]}>
+            <input type="checkbox" id="remember-me" />
+            <label htmlFor="remember-me">
+              Remember me
+            </label>
+          </div>
+          <button type="submit" className={Styles["sign-in-button"]}>
+            {loading ? 'Connexion en cours...' : 'Sign In'}
+          </button>
+        </form>
+      </section>
+    </div>
   );
 }
-
-
 
 export default Signin;
