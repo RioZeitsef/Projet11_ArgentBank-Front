@@ -8,8 +8,8 @@ import { login } from '../actions/authActions';
 
 const Signin = () => {
   const [credentials, setCredentials] = useState({
-    username: 'john@doe.fr',
-    password: 'password',
+    email: '',
+    password: '',
   });
 
   const dispatch = useDispatch();
@@ -50,11 +50,11 @@ const Signin = () => {
 
         <form onSubmit={handleSubmit}>
           <div className={Styles["input-wrapper"]}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input 
-              type="text" 
-              name="username"
-              value={credentials.username}
+              type="email" 
+              name="email"
+              value={credentials.email}
               onChange={handleChange}
               required
             />
