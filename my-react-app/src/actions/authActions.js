@@ -4,6 +4,7 @@ import axios from 'axios';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT = 'LOGOUT';
 
 // Action creators
 export const loginRequest = () => ({
@@ -18,6 +19,10 @@ export const loginSuccess = (userData) => ({
 export const loginFailure = (error) => ({
   type: LOGIN_FAILURE,
   payload: error,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });
 
 // Action principale de login

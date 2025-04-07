@@ -3,8 +3,12 @@ import styles from "../css/Header.module.css";
 import argentBankLogo from "../assets/argentBankLogo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from "react-redux";
+import UserNavbar from "./UserNavBar";
 
 function Header() {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   return (
     <nav className={styles["main-nav"]}>
       <Link to="/" className={styles["main-nav-logo"]}>
@@ -15,10 +19,14 @@ function Header() {
         />
       </Link>
       <div>
-        <Link to="/signin" className={styles["main-nav-item"]}>
-          <FontAwesomeIcon icon={faCircleUser} />
-          Sign In
-        </Link>
+        {isAuthenticated ? (
+          <UserNavbar />
+        ) : (
+          <Link to="/signin" className={styles["main-nav-item"]}>
+            <FontAwesomeIcon icon={faCircleUser} />
+            Sign In
+          </Link>
+        )}
       </div>
     </nav>
   );
