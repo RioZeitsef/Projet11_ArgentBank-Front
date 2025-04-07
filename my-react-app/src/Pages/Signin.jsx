@@ -37,7 +37,7 @@ const Signin = () => {
   };
 
   return (
-    <div className={Styles["bg-dark"]}>
+    <main className={Styles["bg-dark"]}>
       <section className={Styles["sign-in-content"]}>
         <FontAwesomeIcon icon={faCircleUser} />
         <h1>Sign In</h1>
@@ -82,7 +82,7 @@ const Signin = () => {
           </button>
         </form>
       </section>
-    </div>
+    </main>
   );
 }
 

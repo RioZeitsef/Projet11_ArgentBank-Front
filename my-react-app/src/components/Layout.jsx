@@ -14,11 +14,9 @@ const Layout = () => {
         mainClassName = "home-background";    
     }
   return (
-    <div>
+    <div className={Styles["bodyAttribute"]}>
       <Header />
-        <main className={Styles[mainClassName]}>
           <Outlet />
-        </main>
       <Footer />
     </div>
   );
