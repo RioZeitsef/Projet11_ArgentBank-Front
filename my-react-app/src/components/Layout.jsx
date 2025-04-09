@@ -14,11 +14,11 @@ const Layout = () => {
         mainClassName = "home-background";    
     }
   return (
-    <div className={Styles["bodyAttribute"]}>
+    <>
       <Header />
           <Outlet />
       <Footer />
-    </div>
+    </>  
   );
 };
 

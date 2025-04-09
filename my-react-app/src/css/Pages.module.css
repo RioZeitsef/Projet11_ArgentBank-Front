@@ -6,7 +6,7 @@ html {
   color: #2c3e50;
 }
 
-.bodyAttribute {
+body {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -22,10 +22,6 @@ main {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-}
-
-.section-height-adjust {
-  flex: 1;
 }
 
 .sr-only {
