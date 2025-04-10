@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../services/axiosInstance';
 
 // Types d'actions
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -30,7 +30,7 @@ export const login = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
 
   try {
-    const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
+    const response = await axiosInstance.post('/user/login', credentials);
     
     if (response.data.status === 200) {
       // Stockage du token dans le localStorage
@@ -39,7 +39,7 @@ export const login = (credentials) => async (dispatch) => {
       // Dispatch de l'action de succès avec les données utilisateur
       dispatch(loginSuccess({
         token: response.data.body.token,
-        isAuthenticated: true
+        isAuthenticated: true,
       }));
     } else {
       dispatch(loginFailure('Échec de la connexion'));
@@ -47,4 +47,4 @@ export const login = (credentials) => async (dispatch) => {
   } catch (error) {
     dispatch(loginFailure(error.response?.data?.message || 'Une erreur est survenue'));
   }
-}; 
+};
