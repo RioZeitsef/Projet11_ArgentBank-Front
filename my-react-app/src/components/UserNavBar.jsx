@@ -8,7 +8,7 @@ import styles from "../css/Header.module.css";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -18,7 +18,7 @@ const UserMenu = () => {
     <div className={styles["user-menu"]}>
       <Link to="/user" className={styles["main-nav-item"]}>
         <FontAwesomeIcon icon={faCircleUser} />
-        {user?.firstName || "User"}
+        {user?.userName}
       </Link>
       <Link to="/"
         onClick={handleLogout}

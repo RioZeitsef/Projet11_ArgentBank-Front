@@ -1,5 +1,5 @@
 import { createApi, BaseQueryFn } from '@reduxjs/toolkit/query/react';
-import axios, { AxiosRequestConfig, AxiosError } from 'axios';
+import { AxiosRequestConfig, AxiosError } from 'axios';
 import axiosInstance from './axiosInstance';
 
 // Fonction personnalisée pour RTK Query avec Axios
@@ -10,9 +10,8 @@ const axiosBaseQuery =
       method: AxiosRequestConfig['method'];
       data?: AxiosRequestConfig['data'];
       params?: AxiosRequestConfig['params'];
-    },
-    unknown,
-    unknown
+    }
+
   > =>
   async ({ url, method, data, params }) => {
     try {
