@@ -1,50 +1,41 @@
 import axiosInstance from '../services/axiosInstance';
+import { loginRequest, loginSuccess, loginFailure } from '../slice/authSlice';
 
-// Types d'actions
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const LOGOUT = 'LOGOUT';
-
-// Action creators
-export const loginRequest = () => ({
-  type: LOGIN_REQUEST,
-});
-
-export const loginSuccess = (userData) => ({
-  type: LOGIN_SUCCESS,
-  payload: userData,
-});
-
-export const loginFailure = (error) => ({
-  type: LOGIN_FAILURE,
-  payload: error,
-});
-
-export const logout = () => ({
-  type: LOGOUT,
-});
-
-// Action principale de login
+// Action asynchrone de login
 export const login = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
-
+  
   try {
     const response = await axiosInstance.post('/user/login', credentials);
-    
+   
     if (response.data.status === 200) {
       // Stockage du token dans le localStorage
       localStorage.setItem('token', response.data.body.token);
-      
-      // Dispatch de l'action de succès avec les données utilisateur
+     
+      const userResponse = await axiosInstance.get('/user/profile', {}, {
+        headers: {
+          Authorization: `Bearer ${response.data.body.token}`,
+        },
+      });
+
+      const userName = userResponse.data.body.userName;
+      // Utilisation de l'action du slice
       dispatch(loginSuccess({
         token: response.data.body.token,
+        user: { userName: userName },
         isAuthenticated: true,
       }));
+
     } else {
       dispatch(loginFailure('Échec de la connexion'));
     }
   } catch (error) {
+    console.error('Erreur de connexion:', error);
     dispatch(loginFailure(error.response?.data?.message || 'Une erreur est survenue'));
   }
+}
+
+// Action de déconnexion
+export const logoutUser = () => (dispatch) => {
+  dispatch(logout());
 };

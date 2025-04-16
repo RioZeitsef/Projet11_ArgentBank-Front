@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Styles from "../css/Pages.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
-import { login } from '../actions/authActions';
+import { login } from '../actions/authThunks';
 
 const Signin = () => {
   const [credentials, setCredentials] = useState({
@@ -15,6 +15,7 @@ const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error, isAuthenticated } = useSelector(state => state.auth);
+  console.log('Etat d authentificcation:', { loading, error, isAuthenticated });
 
   // Effet pour gérer la navigation après une connexion réussie
   useEffect(() => {
@@ -35,6 +36,7 @@ const Signin = () => {
     e.preventDefault();
     dispatch(login(credentials));
   };
+  
 
   return (
     <main className={Styles["bg-dark"]}>
@@ -43,7 +45,7 @@ const Signin = () => {
         <h1>Sign In</h1>
 
         {error && (
-          <div className="error-message">
+          <div className={Styles["error-message"]}>
             {error}
           </div>
         )}
