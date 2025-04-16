@@ -17,12 +17,17 @@ export const login = (credentials) => async (dispatch) => {
           Authorization: `Bearer ${response.data.body.token}`,
         },
       });
-
+      const firstName = userResponse.data.body.firstName;
+      const lastName = userResponse.data.body.lastName;
       const userName = userResponse.data.body.userName;
       // Utilisation de l'action du slice
       dispatch(loginSuccess({
         token: response.data.body.token,
-        user: { userName: userName },
+        user: { 
+          userName: userName,
+          firstName: firstName,
+          lastName: lastName, 
+        },
         isAuthenticated: true,
       }));
 

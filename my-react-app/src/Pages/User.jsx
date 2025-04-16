@@ -1,13 +1,19 @@
 import React from "react";
 import Styles from "../css/Pages.module.css";
 import Account from "../components/Account";
+import { useSelector } from "react-redux";
 
 const User = () => {
+  const user = useSelector((state) => state.auth.user);
+  console.log('User data:', user);
+
   return (
     <main className={Styles["bg-dark"]}>
       <section>
         <div className={Styles["header"]}>
-          <h1>Welcome back<br />Tony Jarvis!</h1>
+          <h1>Welcome back<br />
+          {user?.firstName} {user?.lastName}!
+          </h1>
           <button className={Styles["edit-button"]}>Edit Name</button>
         </div>
         <h2 className={Styles["sr-only"]}>Accounts</h2>
