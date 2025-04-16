@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../actions/authActions";
+import { logout } from "../slice/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
