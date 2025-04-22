@@ -16,13 +16,9 @@ const EditUserForm = ({ onCancel }) => {
     try {
       const response = await updateUserProfile({ userName }).unwrap();
       // Mettre à jour les informations utilisateur dans Redux
-      const updatedUser = {
-        ...user,
-        userName: userName
-      };
       
       dispatch(loginSuccess({
-        user: updatedUser,
+        user: response.body,
         token: localStorage.getItem('token')
       }));
       

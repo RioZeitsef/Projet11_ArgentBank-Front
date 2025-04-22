@@ -2,9 +2,9 @@ import React from "react";
 import Hero from "../components/Hero";
 import Feature from "../components/Feature";
 import styles from "../css/Pages.module.css";
-import iconChat from '../assets/icon-chat.png'; 
-import iconMoney from '../assets/icon-money.png';
-import iconSecurity from '../assets/icon-security.png';
+import iconChat from '../assets/icon-chat.webp'; 
+import iconMoney from '../assets/icon-money.webp';
+import iconSecurity from '../assets/icon-security.webp';
 
 
 const Home = () => {

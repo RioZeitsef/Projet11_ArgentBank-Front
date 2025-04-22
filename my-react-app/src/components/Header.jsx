@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../css/Header.module.css";
-import argentBankLogo from "../assets/argentBankLogo.png";
+import argentBankLogo from "../assets/argentBankLogo.webp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
