@@ -15,7 +15,6 @@ const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error, isAuthenticated } = useSelector(state => state.auth);
-  console.log('Etat d authentificcation:', { loading, error, isAuthenticated });
 
   // Effet pour gérer la navigation après une connexion réussie
   useEffect(() => {

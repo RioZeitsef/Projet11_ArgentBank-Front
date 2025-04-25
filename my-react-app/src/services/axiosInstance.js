@@ -43,7 +43,6 @@ axiosInstance.interceptors.response.use(
       try {
         const userResponse = await axiosInstance.get('/user/profile');
         const userData = userResponse.data.body;
-        console.log('Données utilisateur récupérées :', userResponse.data.body);
 
         store.dispatch(loginSuccess({
           user: userData,
