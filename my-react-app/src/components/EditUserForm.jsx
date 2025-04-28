@@ -31,6 +31,19 @@ const EditUserForm = ({ onCancel }) => {
   return (
     <form onSubmit={handleSubmit} className={Styles["edit-form"]}>
       <div className={Styles["edit-content"]}>
+      <div className={Styles["input-wrapper"]}>
+          <label htmlFor="firstName">First Name:</label>
+          <div className={Styles["readonly-field"]}>
+            {user?.firstName || ""}
+          </div>
+        </div>
+
+        <div className={Styles["input-wrapper"]}>
+          <label htmlFor="lastName">Last Name:</label>
+          <div className={Styles["readonly-field"]}>
+            {user?.lastName || ""}
+          </div>
+        </div>
         <div className={Styles["input-wrapper"]}>
           <label htmlFor="userName">User Name:</label>
           <input
