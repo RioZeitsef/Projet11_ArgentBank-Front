@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { REHYDRATE } from 'redux-persist';
 import axiosInstance from '../services/axiosInstance';
 
 const authSlice = createSlice({
@@ -22,7 +23,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.token = action.payload.token;
       state.error = null;
-      
+
       if (action.payload.token) {
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${action.payload.token}`;
       }
@@ -41,9 +42,24 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.token = null;
       state.error = null;
-      
       delete axiosInstance.defaults.headers.common['Authorization'];
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(REHYDRATE, (action) => {
+      // Vérifier si l'action concerne notre slice
+      if (action.payload && action.payload.auth) {
+        // Récupérer le token du payload
+        const token = action.payload.auth.token;
+        
+        // Si un token est présent dans les données réhydratées
+        if (token) {
+          // Reconfigurer axios avec le token
+          axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        }
+      }
+      // Pas besoin de return, Redux Toolkit s'occupera de fusionner les états
+    });
   }
 });
 

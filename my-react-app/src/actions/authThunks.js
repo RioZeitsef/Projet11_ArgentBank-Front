@@ -1,5 +1,6 @@
+import { PURGE } from 'redux-persist';
 import axiosInstance from '../services/axiosInstance';
-import { loginRequest, loginSuccess, loginFailure } from '../slice/authSlice';
+import { loginRequest, loginSuccess, loginFailure, logout } from '../slice/authSlice';
 
 // Action asynchrone de login
 export const login = (credentials) => async (dispatch) => {
@@ -41,4 +42,10 @@ export const login = (credentials) => async (dispatch) => {
 // Action de déconnexion
 export const logoutUser = () => (dispatch) => {
   dispatch(logout());
+
+  dispatch({
+    type: PURGE,
+    key: 'root',
+    result: () => null
+  });
 };

@@ -11,6 +11,22 @@ const axiosInstance = axios.create({
   }
 });
 
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const state = store.getState();
+    const token = state.auth?.token;
+    
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 axiosInstance.interceptors.response.use(
   async (response) => {
     if (response.config.url.includes('/user/login') && response.status === 200) {
