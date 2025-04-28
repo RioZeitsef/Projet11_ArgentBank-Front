@@ -19,7 +19,7 @@ const EditUserForm = ({ onCancel }) => {
       
       dispatch(loginSuccess({
         user: response.body,
-        token: localStorage.getItem('token')
+        isAuthenticated: true,
       }));
       
       onCancel(); // Fermer le formulaire après la modification

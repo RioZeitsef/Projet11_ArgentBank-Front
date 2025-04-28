@@ -9,8 +9,6 @@ export const login = (credentials) => async (dispatch) => {
     const response = await axiosInstance.post('/user/login', credentials);
    
     if (response.data.status === 200) {
-      // Stockage du token dans le localStorage
-      localStorage.setItem('token', response.data.body.token);
      
       const userResponse = await axiosInstance.get('/user/profile', {}, {
         headers: {

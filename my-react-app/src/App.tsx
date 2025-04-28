@@ -1,31 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
-import type { AppDispatch } from "./store";
-import store from "./store";
-import { checkAuthentication } from "./slice/authSlice";
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from "./store";
 import Home from "./Pages/Home";
 import Signin from "./Pages/Signin";
 import Layout from "./components/Layout";
 import User from "./Pages/User";
 
-// Composant qui vérifie l'authentification
-const AuthCheck: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const dispatch: AppDispatch = useDispatch();
-  
-  useEffect(() => {
-    // Vérifier l'authentification au chargement de l'application
-    dispatch(checkAuthentication());
-  }, [dispatch]);
-  
-  return <>{children}</>;
-};
-
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <AuthCheck>
+      <PersistGate loading={<div>Chargement...</div>} persistor={persistor}>
+        <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
@@ -33,8 +20,8 @@ function App() {
               <Route path="/user" element={<User />} />
             </Route>
           </Routes>
-        </AuthCheck>
-      </Router>
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }
